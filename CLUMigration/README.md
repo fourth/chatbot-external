@@ -1,6 +1,6 @@
 ## CLU Migration
 
-This sample shows how to integrate Conversational Language Understanding (CLU) in Bot Framework Composer using the CluRecognizer package (developed by Orestis from Microsoft). The main goals are:
+This sample shows how to integrate Conversational Language Understanding (CLU) in Bot Framework Composer using the Microsoft's [CluRecognizer](https://www.nuget.org/packages/Microsoft.Bot.Components.Recognizers.CLURecognizer/) NuGet package. The main goals are:
 
 * Intent recognition triggers (PizzaOrder, DeliveryLocation) and entity extraction within them (e.g. DeliveryLocation - @geography.text)
 * User input validation using CLU (see: CluEntityValidator dialog) and entity extraction (in the same dialog: dialog.predictionEntity.text)
