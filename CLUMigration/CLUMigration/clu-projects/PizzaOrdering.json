@@ -1,0 +1,441 @@
+{
+    "projectFileVersion": "2022-10-01-preview",
+    "stringIndexType": "Utf16CodeUnit",
+    "metadata": {
+        "projectKind": "Conversation",
+        "settings": {
+            "confidenceThreshold": 0
+        },
+        "projectName": "PizzaOrdering",
+        "multilingual": false,
+        "description": "test",
+        "language": "en-us"
+    },
+    "assets": {
+        "projectKind": "Conversation",
+        "intents": [
+            {
+                "category": "None"
+            },
+            {
+                "category": "PizzaOrder"
+            },
+            {
+                "category": "DeliveryLocation"
+            },
+            {
+                "category": "Email"
+            }
+        ],
+        "entities": [
+            {
+                "category": "geography",
+                "compositionSetting": "combineComponents",
+                "prebuilts": [
+                    {
+                        "category": "Geography.Location"
+                    }
+                ],
+                "requiredComponents": [
+                    "prebuilts"
+                ]
+            },
+            {
+                "category": "email",
+                "compositionSetting": "combineComponents",
+                "prebuilts": [
+                    {
+                        "category": "Email"
+                    }
+                ],
+                "requiredComponents": [
+                    "prebuilts"
+                ]
+            }
+        ],
+        "utterances": [
+            {
+                "text": "please, contact me at: john.doe@live.com",
+                "language": "en-us",
+                "intent": "Email",
+                "entities": [
+                    {
+                        "category": "email",
+                        "offset": 23,
+                        "length": 17
+                    }
+                ],
+                "dataset": "Test"
+            },
+            {
+                "text": "please, ping me at: michael.jordan@yahoo.com",
+                "language": "en-us",
+                "intent": "Email",
+                "entities": [
+                    {
+                        "category": "email",
+                        "offset": 20,
+                        "length": 24
+                    }
+                ],
+                "dataset": "Train"
+            },
+            {
+                "text": "you can reach me at ivan.ivanov@yahoo.com",
+                "language": "en-us",
+                "intent": "Email",
+                "entities": [
+                    {
+                        "category": "email",
+                        "offset": 20,
+                        "length": 21
+                    }
+                ],
+                "dataset": "Train"
+            },
+            {
+                "text": "please, contact me at jon.skeet@gmail.com",
+                "language": "en-us",
+                "intent": "Email",
+                "entities": [
+                    {
+                        "category": "email",
+                        "offset": 22,
+                        "length": 19
+                    }
+                ],
+                "dataset": "Train"
+            },
+            {
+                "text": "the only mail that I have is: hulio_iglesias@universal-records.com",
+                "language": "en-us",
+                "intent": "Email",
+                "entities": [
+                    {
+                        "category": "email",
+                        "offset": 30,
+                        "length": 36
+                    }
+                ],
+                "dataset": "Train"
+            },
+            {
+                "text": "john-doe12@gmail.com",
+                "language": "en-us",
+                "intent": "Email",
+                "entities": [
+                    {
+                        "category": "email",
+                        "offset": 0,
+                        "length": 20
+                    }
+                ],
+                "dataset": "Train"
+            },
+            {
+                "text": "universe-is-real@oracle.com",
+                "language": "en-us",
+                "intent": "Email",
+                "entities": [
+                    {
+                        "category": "email",
+                        "offset": 0,
+                        "length": 27
+                    }
+                ],
+                "dataset": "Train"
+            },
+            {
+                "text": "the email that I've got is emil.dimitrov@gmail.com",
+                "language": "en-us",
+                "intent": "Email",
+                "entities": [
+                    {
+                        "category": "email",
+                        "offset": 27,
+                        "length": 23
+                    }
+                ],
+                "dataset": "Train"
+            },
+            {
+                "text": "vasil.petrov@live.com",
+                "language": "en-us",
+                "intent": "Email",
+                "entities": [
+                    {
+                        "category": "email",
+                        "offset": 0,
+                        "length": 21
+                    }
+                ],
+                "dataset": "Train"
+            },
+            {
+                "text": "My personal email, it is james.pardew@gmail.com",
+                "language": "en-us",
+                "intent": "Email",
+                "entities": [
+                    {
+                        "category": "email",
+                        "offset": 25,
+                        "length": 22
+                    }
+                ],
+                "dataset": "Train"
+            },
+            {
+                "text": "michael.bolton@yahoo.com",
+                "language": "en-us",
+                "intent": "Email",
+                "entities": [
+                    {
+                        "category": "email",
+                        "offset": 0,
+                        "length": 24
+                    }
+                ],
+                "dataset": "Test"
+            },
+            {
+                "text": "my email is: tom.cruise@gmail.com",
+                "language": "en-us",
+                "intent": "Email",
+                "entities": [
+                    {
+                        "category": "email",
+                        "offset": 13,
+                        "length": 20
+                    }
+                ],
+                "dataset": "Test"
+            },
+            {
+                "text": "my electronic mail is: john.doe@yahoo.com",
+                "language": "en-us",
+                "intent": "Email",
+                "entities": [
+                    {
+                        "category": "email",
+                        "offset": 23,
+                        "length": 18
+                    }
+                ],
+                "dataset": "Train"
+            },
+            {
+                "text": "my mail is james.brown@yahoo.com",
+                "language": "en-us",
+                "intent": "Email",
+                "entities": [
+                    {
+                        "category": "email",
+                        "offset": 11,
+                        "length": 21
+                    }
+                ],
+                "dataset": "Train"
+            },
+            {
+                "text": "the mail that I have is michael.jordan@gmail.com",
+                "language": "en-us",
+                "intent": "Email",
+                "entities": [
+                    {
+                        "category": "email",
+                        "offset": 24,
+                        "length": 24
+                    }
+                ],
+                "dataset": "Train"
+            },
+            {
+                "text": "you can send me a message on john.doe@gmail.com",
+                "language": "en-us",
+                "intent": "Email",
+                "entities": [
+                    {
+                        "category": "email",
+                        "offset": 29,
+                        "length": 18
+                    }
+                ],
+                "dataset": "Train"
+            },
+            {
+                "text": "My email is john.doe@gmail.com",
+                "language": "en-us",
+                "intent": "Email",
+                "entities": [
+                    {
+                        "category": "email",
+                        "offset": 12,
+                        "length": 18
+                    }
+                ],
+                "dataset": "Train"
+            },
+            {
+                "text": "john.doe@gmail.com",
+                "language": "en-us",
+                "intent": "Email",
+                "entities": [
+                    {
+                        "category": "email",
+                        "offset": 0,
+                        "length": 18
+                    }
+                ],
+                "dataset": "Train"
+            },
+            {
+                "text": "Please, bring me the pizza at 2889 W Grand Blvd, Detroit, MI 48202",
+                "language": "en-us",
+                "intent": "DeliveryLocation",
+                "entities": [
+                    {
+                        "category": "geography",
+                        "offset": 30,
+                        "length": 36
+                    }
+                ],
+                "dataset": "Train"
+            },
+            {
+                "text": "Boston, MA, USA",
+                "language": "en-us",
+                "intent": "DeliveryLocation",
+                "entities": [
+                    {
+                        "category": "geography",
+                        "offset": 0,
+                        "length": 15
+                    }
+                ],
+                "dataset": "Test"
+            },
+            {
+                "text": "Los Angeles, CA, USA",
+                "language": "en-us",
+                "intent": "DeliveryLocation",
+                "entities": [
+                    {
+                        "category": "geography",
+                        "offset": 0,
+                        "length": 20
+                    }
+                ],
+                "dataset": "Train"
+            },
+            {
+                "text": "I need the pizza to be delivered to: 345 NE 2nd Ave, Miami, FL 33132, United States",
+                "language": "en-us",
+                "intent": "DeliveryLocation",
+                "entities": [
+                    {
+                        "category": "geography",
+                        "offset": 37,
+                        "length": 46
+                    }
+                ],
+                "dataset": "Train"
+            },
+            {
+                "text": "My location is 490 8th Ave, New York, NY 10001, United States",
+                "language": "en-us",
+                "intent": "DeliveryLocation",
+                "entities": [
+                    {
+                        "category": "geography",
+                        "offset": 15,
+                        "length": 46
+                    }
+                ],
+                "dataset": "Train"
+            },
+            {
+                "text": "Please, deliver to Broadway Avenue, New York, NY",
+                "language": "en-us",
+                "intent": "DeliveryLocation",
+                "entities": [
+                    {
+                        "category": "geography",
+                        "offset": 19,
+                        "length": 29
+                    }
+                ],
+                "dataset": "Train"
+            },
+            {
+                "text": "please, order me tasty pizza",
+                "language": "en-us",
+                "intent": "PizzaOrder",
+                "entities": [],
+                "dataset": "Train"
+            },
+            {
+                "text": "Please, would you order me one pizza",
+                "language": "en-us",
+                "intent": "PizzaOrder",
+                "entities": [],
+                "dataset": "Train"
+            },
+            {
+                "text": "pizza for the hungry ones",
+                "language": "en-us",
+                "intent": "PizzaOrder",
+                "entities": [],
+                "dataset": "Train"
+            },
+            {
+                "text": "I need to eat pizza this evening",
+                "language": "en-us",
+                "intent": "PizzaOrder",
+                "entities": [],
+                "dataset": "Train"
+            },
+            {
+                "text": "I am dying for some pizza tonight",
+                "language": "en-us",
+                "intent": "PizzaOrder",
+                "entities": [],
+                "dataset": "Train"
+            },
+            {
+                "text": "it would be great to order me some pizza",
+                "language": "en-us",
+                "intent": "PizzaOrder",
+                "entities": [],
+                "dataset": "Train"
+            },
+            {
+                "text": "would love to eat pizza",
+                "language": "en-us",
+                "intent": "PizzaOrder",
+                "entities": [],
+                "dataset": "Train"
+            },
+            {
+                "text": "I need to eat some pizza",
+                "language": "en-us",
+                "intent": "PizzaOrder",
+                "entities": [],
+                "dataset": "Train"
+            },
+            {
+                "text": "pizza please",
+                "language": "en-us",
+                "intent": "PizzaOrder",
+                "entities": [],
+                "dataset": "Train"
+            },
+            {
+                "text": "order me some pizza",
+                "language": "en-us",
+                "intent": "PizzaOrder",
+                "entities": [],
+                "dataset": "Train"
+            }
+        ]
+    }
+}

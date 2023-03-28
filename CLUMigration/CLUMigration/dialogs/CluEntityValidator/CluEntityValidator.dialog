@@ -1,0 +1,140 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "id": "I6OlQ5",
+    "name": "CluEntityValidator",
+    "comment": ""
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnBeginDialog",
+      "$designer": {
+        "name": "BeginDialog",
+        "description": "",
+        "id": "I0mDL8"
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.HttpRequest",
+          "$designer": {
+            "id": "mvQQam"
+          },
+          "resultProperty": "turn.cluResponse",
+          "method": "POST",
+          "url": "Your-Prediction-URL-Here",
+          "body": {
+            "kind": "Conversation",
+            "analysisInput": {
+              "conversationItem": {
+                "id": "${turn.activity.from.id}",
+                "text": "${turn.activity.text}",
+                "modality": "text",
+                "language": "en-us",
+                "participantId": "${turn.activity.from.id}"
+              }
+            },
+            "parameters": {
+              "projectName": "Your-Project-Name-Here",
+              "verbose": true,
+              "deploymentName": "Your-Deployment-Name-Here",
+              "stringIndexType": "TextElement_V8"
+            }
+          },
+          "headers": {
+            "Ocp-Apim-Subscription-Key": "Type-Here-Your-Ocp-Apim-Subscription-Key"
+          },
+          "contentType": "application/json",
+          "responseType": "json"
+        },
+        {
+          "$kind": "Microsoft.IfCondition",
+          "$designer": {
+            "id": "z4boJ2"
+          },
+          "condition": "=not(equals(turn.cluResponse.statusCode, 200))",
+          "actions": [
+            {
+              "$kind": "Microsoft.SetProperty",
+              "$designer": {
+                "id": "UyerQF"
+              },
+              "property": "dialog.validationResponse",
+              "value": {
+                "hasSystemError": true,
+                "errorMessage": "${turn.cluResponse.statusCode} - ${turn.cluResponse.reasonPhrase}"
+              }
+            },
+            {
+              "$kind": "Microsoft.EndDialog",
+              "$designer": {
+                "id": "aTkCsb"
+              },
+              "value": "=dialog.validationResponse"
+            }
+          ]
+        },
+        {
+          "$kind": "Microsoft.SetProperty",
+          "$designer": {
+            "id": "cxtpoX"
+          },
+          "property": "dialog.predictionEntities",
+          "value": "=turn.cluResponse.content.result.prediction.entities"
+        },
+        {
+          "$kind": "Microsoft.SetProperty",
+          "$designer": {
+            "id": "0GyfbB"
+          },
+          "property": "dialog.predictionEntity",
+          "value": "=first(where(dialog.predictionEntities, currentEntity, and(equals(toLower(currentEntity.category), toLower(dialog.entityName)), greaterOrEquals(currentEntity.confidenceScore, dialog.confidenceScoreThreshold))))"
+        },
+        {
+          "$kind": "Microsoft.IfCondition",
+          "$designer": {
+            "id": "NjzHGB"
+          },
+          "condition": "=not(empty(dialog.predictionEntity))",
+          "actions": [
+            {
+              "$kind": "Microsoft.SetProperty",
+              "$designer": {
+                "id": "HAHUGL"
+              },
+              "property": "dialog.validationResponse",
+              "value": {
+                "entityText": "${dialog.predictionEntity.text}",
+                "hasValidationError": false
+              }
+            }
+          ],
+          "elseActions": [
+            {
+              "$kind": "Microsoft.SetProperty",
+              "$designer": {
+                "id": "GpANjm"
+              },
+              "property": "dialog.validationResponse",
+              "value": {
+                "hasValidationError": true,
+                "errorMessage": "Prediction entity: \"${dialog.entityName}\" either not returned or confindence score is below the threshold: ${dialog.confidenceScoreThreshold}."
+              }
+            }
+          ]
+        },
+        {
+          "$kind": "Microsoft.EndDialog",
+          "$designer": {
+            "id": "mH8OGE"
+          },
+          "value": "=dialog.validationResponse"
+        }
+      ]
+    }
+  ],
+  "generator": "CluEntityValidator.lg",
+  "recognizer": "CluEntityValidator.lu.qna",
+  "id": "CluEntityValidator"
+}

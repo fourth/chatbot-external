@@ -1,0 +1,166 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "name": "CLUMigration",
+    "description": "",
+    "id": "A79tBe"
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnConversationUpdateActivity",
+      "$designer": {
+        "id": "376720",
+        "comment": "This trigger runs when a conversation update activity is sent to the bot. This indicates a user or bot being added or removed from a conversation."
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.Foreach",
+          "$designer": {
+            "id": "518944",
+            "name": "Loop: for each item",
+            "comment": "For each member added to the conversation."
+          },
+          "itemsProperty": "turn.Activity.membersAdded",
+          "actions": [
+            {
+              "$kind": "Microsoft.IfCondition",
+              "$designer": {
+                "id": "641773",
+                "name": "Branch: if/else",
+                "comment": "Checks that that member added ID does not match the bot ID. This prevents the greeting message from being sent when the bot is added to a conversation."
+              },
+              "condition": "=string(dialog.foreach.value.id) != string(turn.Activity.Recipient.id)",
+              "actions": [
+                {
+                  "$kind": "Microsoft.SendActivity",
+                  "$designer": {
+                    "id": "859266",
+                    "name": "Send a response"
+                  },
+                  "activity": "${SendActivity_Greeting()}"
+                },
+                {
+                  "$kind": "Microsoft.SendActivity",
+                  "$designer": {
+                    "id": "ceoDlX"
+                  },
+                  "activity": "${SendActivity_ceoDlX()}"
+                },
+                {
+                  "$kind": "Microsoft.SendActivity",
+                  "$designer": {
+                    "id": "TQLLH8"
+                  },
+                  "activity": "${SendActivity_TQLLH8()}"
+                }
+              ]
+            }
+          ],
+          "value": "dialog.foreach.value"
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnUnknownIntent",
+      "$designer": {
+        "id": "mb2n1u",
+        "comment": "This trigger fires when an incoming activity is not handled by any other trigger."
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "kMjqz1",
+            "comment": "It is recommended to show a message to the user when the bot does not know how to handle an incoming activity and provide follow up options or a help message."
+          },
+          "activity": "${SendActivity_DidNotUnderstand()}"
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "TEzsbA",
+        "name": "PizzaOrder"
+      },
+      "intent": "PizzaOrder",
+      "actions": [
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "iNVQmT"
+          },
+          "activityProcessed": true,
+          "dialog": "QuestionWithCluValidation",
+          "options": {
+            "questionText": "=\"What is your email?\"",
+            "entityName": "=\"email\"",
+            "cluValidationErrorMessage": "=\"You have entered incorrect email. Please, try again.\""
+          },
+          "resultProperty": "dialog.result"
+        },
+        {
+          "$kind": "Microsoft.IfCondition",
+          "$designer": {
+            "id": "W53Wkt"
+          },
+          "condition": "=not(dialog.result.hasError)",
+          "actions": [
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "gETt00"
+              },
+              "activity": "${SendActivity_gETt00()}"
+            },
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "V8SPPj"
+              },
+              "activity": "${SendActivity_V8SPPj()}"
+            }
+          ]
+        }
+      ],
+      "condition": "=turn.recognized.score > 0.8"
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "SQDkk0",
+        "name": "DeliveryLocation"
+      },
+      "intent": "DeliveryLocation",
+      "actions": [
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "lSFwRI"
+          },
+          "activity": "${SendActivity_lSFwRI()}"
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "hodoel"
+          },
+          "activity": "${SendActivity_hodoel()}"
+        }
+      ],
+      "condition": "=turn.recognized.score > 0.8"
+    }
+  ],
+  "generator": "CLUMigration.lg",
+  "id": "CLUMigration",
+  "recognizer": {
+    "$kind": "Microsoft.CluRecognizer",
+    "projectName": "Your-Project-Name-Here",
+    "endpoint": "https://your-subdomain-here.cognitiveservices.azure.com",
+    "endpointKey": "Type-your-Ocp-Apim-Subscription-Key",
+    "deploymentName": "Your-Deployment-Name-here",
+    "includeAPIResults": true
+  }
+}

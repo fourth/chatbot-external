@@ -1,0 +1,141 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "id": "gJjCIf",
+    "name": "QuestionWithCluValidation",
+    "comment": ""
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnBeginDialog",
+      "$designer": {
+        "name": "BeginDialog",
+        "description": "",
+        "id": "BxweXb"
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.TextInput",
+          "$designer": {
+            "id": "atoO2b"
+          },
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": false,
+          "allowInterruptions": false,
+          "unrecognizedPrompt": "",
+          "invalidPrompt": "",
+          "prompt": "${TextInput_Prompt_atoO2b()}"
+        },
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "e45ODc"
+          },
+          "activityProcessed": true,
+          "dialog": "CluEntityValidator",
+          "options": {
+            "entityName": "=dialog.entityName",
+            "confidenceScoreThreshold": "=0.8",
+            "validationResponsePropertyName": "=dialog.validationResponsePropertyName"
+          },
+          "resultProperty": "dialog.validationResponse"
+        },
+        {
+          "$kind": "Microsoft.IfCondition",
+          "$designer": {
+            "id": "jfrnw9"
+          },
+          "condition": "=dialog.validationResponse.hasSystemError",
+          "actions": [
+            {
+              "$kind": "Microsoft.IfCondition",
+              "$designer": {
+                "id": "UmqPXs"
+              },
+              "condition": "=not(empty(dialog.validationResponse.errorMessage))",
+              "actions": [
+                {
+                  "$kind": "Microsoft.SendActivity",
+                  "$designer": {
+                    "id": "mjnyAM"
+                  },
+                  "activity": "${SendActivity_mjnyAM()}"
+                },
+                {
+                  "$kind": "Microsoft.SendActivity",
+                  "$designer": {
+                    "id": "0qwNqU"
+                  },
+                  "activity": "${SendActivity_0qwNqU()}"
+                }
+              ],
+              "elseActions": [
+                {
+                  "$kind": "Microsoft.SendActivity",
+                  "$designer": {
+                    "id": "FzQ9pv"
+                  },
+                  "activity": "${SendActivity_FzQ9pv()}"
+                }
+              ]
+            },
+            {
+              "$kind": "Microsoft.EndDialog",
+              "$designer": {
+                "id": "U5fEU3"
+              },
+              "value": {
+                "hasError": true
+              }
+            }
+          ]
+        },
+        {
+          "$kind": "Microsoft.IfCondition",
+          "$designer": {
+            "id": "IYryZS"
+          },
+          "condition": "=dialog.validationResponse.hasValidationError",
+          "actions": [
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "mUwGIy"
+              },
+              "activity": "${SendActivity_mUwGIy()}"
+            },
+            {
+              "$kind": "Microsoft.RepeatDialog",
+              "$designer": {
+                "id": "v5LRYr"
+              },
+              "activityProcessed": true,
+              "options": {
+                "questionText": "=dialog.questionText",
+                "entityName": "=dialog.entityName",
+                "cluValidationErrorMessage": "=dialog.cluValidationErrorMessage"
+              }
+            }
+          ],
+          "elseActions": []
+        },
+        {
+          "$kind": "Microsoft.EndDialog",
+          "$designer": {
+            "id": "Gtkpgj"
+          },
+          "value": {
+            "userResponse": "${dialog.validationResponse.entityText}",
+            "hasError": false
+          }
+        }
+      ]
+    }
+  ],
+  "generator": "QuestionWithCluValidation.lg",
+  "recognizer": "QuestionWithCluValidation.lu.qna",
+  "id": "QuestionWithCluValidation"
+}

@@ -1,0 +1,37 @@
+[import](common.lg)
+
+# TextInput_Prompt_atoO2b_text()
+- ${dialog.questionText}
+# TextInput_Prompt_atoO2b()
+[Activity
+    Text = ${TextInput_Prompt_atoO2b_text()}
+]
+
+# SendActivity_mUwGIy_text()
+- ${dialog.cluValidationErrorMessage}
+# SendActivity_mUwGIy()
+[Activity
+    Text = ${SendActivity_mUwGIy_text()}
+]
+
+# SendActivity_mjnyAM_text()
+- System error: ${dialog.validationResponse.errorMessage}
+# SendActivity_mjnyAM()
+[Activity
+    Text = ${SendActivity_mjnyAM_text()}
+]
+
+# SendActivity_FzQ9pv_text()
+- Something went wrong. Please, try again.
+# SendActivity_FzQ9pv()
+[Activity
+    Text = ${SendActivity_FzQ9pv_text()}
+]
+
+# SendActivity_0qwNqU()
+[Activity
+    Text = ${SendActivity_0qwNqU_text()}
+]
+
+# SendActivity_0qwNqU_text()
+- Please, try again in 5-10 minutes.

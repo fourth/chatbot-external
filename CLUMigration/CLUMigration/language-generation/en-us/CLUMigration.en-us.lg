@@ -1,0 +1,58 @@
+[import](common.lg)
+
+# SendActivity_Greeting()
+[Activity
+    Text = ${SendActivity_Greeting_text()}
+]
+
+# SendActivity_Greeting_text()
+- Welcome to your Pizza Ordering bot.
+# SendActivity_DidNotUnderstand()
+[Activity
+    Text = ${SendActivity_DidNotUnderstand_text()}
+]
+
+# SendActivity_DidNotUnderstand_text()
+- Sorry, I didn't get that.
+# SendActivity_lSFwRI()
+[Activity
+    Text = ${SendActivity_lSFwRI_text()}
+]
+
+# SendActivity_lSFwRI_text()
+- Your location: ${@geography.text}
+# SendActivity_hodoel()
+[Activity
+    Text = ${SendActivity_hodoel_text()}
+]
+
+# SendActivity_hodoel_text()
+- Confidence score: ${@geography.confidenceScore}
+# SendActivity_ceoDlX()
+[Activity
+    Text = ${SendActivity_ceoDlX_text()}
+]
+
+# SendActivity_ceoDlX_text()
+- If you want to order pizza, type: pizza please
+# SendActivity_TQLLH8()
+[Activity
+    Text = ${SendActivity_TQLLH8_text()}
+]
+
+# SendActivity_TQLLH8_text()
+- If you want to enter your delivery location, type your location (e.g. My location is Los Angeles, CA, USA).
+# SendActivity_V8SPPj_text()
+- Great. Thank you!
+# SendActivity_V8SPPj()
+[Activity
+    Text = ${SendActivity_V8SPPj_text()}
+]
+
+# SendActivity_gETt00()
+[Activity
+    Text = ${SendActivity_gETt00_text()}
+]
+
+# SendActivity_gETt00_text()
+- You have entered: ${dialog.result.userResponse}
